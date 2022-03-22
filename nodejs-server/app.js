@@ -17,6 +17,9 @@ app.post('/webhook', (req, res) => {
     if (signature === req.body.signature) {
         // this is a valid webhook from ChainGate
         // process the request here
+        console.log("Valid WebHook from ChainGate");
+    } else {
+        console.log("Invalid WebHook from ChainGate");
     }
     res.sendStatus(200)
 })

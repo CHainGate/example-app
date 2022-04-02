@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.post('/webhook', (req, res) => {
-    const params = req.body.data
+    const params = req.body.data;
     const hmac = crypto.createHmac('sha512', process.env.API_KEY);
     hmac.update(JSON.stringify(params, Object.keys(params).sort()));
     const signature = hmac.digest('hex');
@@ -21,6 +21,7 @@ app.post('/webhook', (req, res) => {
     } else {
         console.log("Invalid WebHook from ChainGate");
     }
+    console.log(params);
     res.sendStatus(200)
 })
 

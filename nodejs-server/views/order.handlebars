@@ -1,0 +1,72 @@
+<header>
+    <h3>Checkout</h3>
+</header>
+<main>
+
+    <section class="checkout-details">
+        <div class="checkout-details-inner">
+            <div class="checkout-lists">
+                <div class="card">
+                    <div class="card-image"><img src="https://vetri-suriya.web.app/devchallenges/checkout-page/photo1.png" alt=""></div>
+                    <div class="card-details">
+                        <div class="card-name">Vintage Backbag</div>
+                        <div class="card-price">$4.00 <span>$9.00</span></div>
+                        <div class="card-wheel">
+                            <button>-</button>
+                            <span>1</span>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image"><img src="https://vetri-suriya.web.app/devchallenges/checkout-page/photo2.png" alt=""></div>
+                    <div class="card-details">
+                        <div class="card-name">Shoes</div>
+                        <div class="card-price">$5.00 <span>$11.00</span></div>
+                        <div class="card-wheel">
+                            <button>-</button>
+                            <span>1</span>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-shipping">
+                <h6>Shipping</h6>
+                <p>$1,00</p>
+            </div>
+            <div class="checkout-total">
+                <h6>Total</h6>
+                <p>$10.00</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="checkout-form">
+        <form action="#!" method="get" onsubmit="createPayment();return false;">
+            <div class="form-control-btn">
+                <button>Pay with crypto</button>
+            </div>
+        </form>
+    </section>
+</main>
+<script>
+    async function createPayment () {
+        let data = {
+            "priceCurrency": "usd",
+            "priceAmount": 10,
+            "callbackUrl": "{{callBackBaseURL}}/webhook",
+            "successPageUrl": "{{callBackBaseURL}}/success",
+            "failurePageUrl": "{{callBackBaseURL}}/failure"
+        }
+        let response = await fetch("{{backendURL}}/api/public/invoice", {
+            method: 'POST',
+            headers: {
+                'X-API-KEY': '{{{key}}}'
+            },
+            body: JSON.stringify(data)
+        })
+        data = await response.json()
+        window.location.href = data.invoiceUrl
+    }
+</script>

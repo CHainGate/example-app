@@ -56,8 +56,8 @@
             "priceCurrency": "usd",
             "priceAmount": 10,
             "callbackUrl": "{{callBackBaseURL}}/webhook",
-            "successPageUrl": "{{callBackBaseURL}}/success",
-            "failurePageUrl": "{{callBackBaseURL}}/failure"
+            "successPageUrl": "{{callBackBrowserBaseURL}}/success",
+            "failurePageUrl": "{{callBackBrowserBaseURL}}/failure"
         }
         let response = await fetch("{{backendURL}}/api/public/invoice", {
             method: 'POST',

@@ -36,8 +36,9 @@ app.post('/webhook', (req, res) => {
 app.get('/order', (req, res) => {
     let key = process.env.API_KEY
     let callBackBaseURL = process.env.CALLBACK_BASE_URL
+    let callBackBrowserBaseURL = process.env.CALLBACK_BROWSER_BASE_URL
     let backendURL = process.env.BACKEND_URL
-    res.render('order', {key, callBackBaseURL, backendURL});
+    res.render('order', {key, callBackBaseURL, backendURL, callBackBrowserBaseURL});
 })
 
 app.get('/success', (req, res) => {

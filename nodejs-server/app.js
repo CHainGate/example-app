@@ -23,11 +23,11 @@ app.post('/webhook', (req, res) => {
     hmac.update(JSON.stringify(params, Object.keys(params).sort()));
     const signature = hmac.digest('hex');
     if (signature === req.body.signature) {
-        // this is a valid webhook from ChainGate
+        // this is a valid webhook from CHainGate
         // process the request here
-        console.log("Valid WebHook from ChainGate");
+        console.log("Valid WebHook from CHainGate");
     } else {
-        console.log("Invalid WebHook from ChainGate");
+        console.log("Invalid WebHook from CHainGate");
     }
     console.log(params);
     res.sendStatus(200)

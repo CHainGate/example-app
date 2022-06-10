@@ -4,10 +4,18 @@ import crypto from "crypto"
 import 'dotenv/config'
 const app = express()
 const port =  process.env.PORT || 5000
+import { engine } from 'express-handlebars';
+import 'dotenv/config'
 
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 app.use(bodyParser.json());
 app.use(express.json());
+
+
 
 app.post('/webhook', (req, res) => {
     const params = req.body.data;
@@ -23,6 +31,21 @@ app.post('/webhook', (req, res) => {
     }
     console.log(params);
     res.sendStatus(200)
+})
+
+app.get('/order', (req, res) => {
+    let key = process.env.API_KEY
+    let callBackBaseURL = process.env.CALLBACK_BASE_URL
+    let backendURL = process.env.BACKEND_URL
+    res.render('order', {key, callBackBaseURL, backendURL});
+})
+
+app.get('/success', (req, res) => {
+    res.render('success');
+})
+
+app.get('/failure', (req, res) => {
+    res.render('failure');
 })
 
 app.listen(port, () => {
